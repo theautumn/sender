@@ -288,22 +288,35 @@ void seltonum(struct senderstate* sstate, struct commstate* trunk1)
                 break;
     }
 
-    char linestring[5] = {0};
+    char linestring[10] = "";
 
     // OK cool we can print an int
     printf("\nInt of line number: ");
+	//if (lineno[1] == 0) {
+	//	printf("%d", 0);
+	//};
 	for (int i=0; i<3; i++) {
         printf("%d", lineno[i]);
     }
-
-	// XXX TODO: make this deal with preceding zeroes
-
+#if 0
     // But to make it a str, we have to get crafty, because element 0 in the int has 2 digits
     // so we must offset linestring[] an extra step after the first snprintf(), or we'll lose
     // the second digit in the array.
-    snprintf(&linestring[0], sizeof(linestring)-1, "%d", lineno[0]);
-    snprintf(&linestring[2], sizeof(linestring)-1, "%d", lineno[1]);
-    snprintf(&linestring[3], sizeof(linestring)-1, "%d", lineno[2]);
+	if (s[2] == 0) {
+		snprintf(&linestring[0], sizeof(linestring)-1, "%d", 0);
+		snprintf(&linestring[1], sizeof(linestring)-1, "%d", lineno[0]);
+		snprintf(&linestring[2], sizeof(linestring)-1, "%d", lineno[1]);
+		snprintf(&linestring[3], sizeof(linestring)-1, "%d", lineno[2]);
+	} else {
+		snprintf(&linestring[0], sizeof(linestring)-1, "%d", lineno[0]);
+		snprintf(&linestring[2], sizeof(linestring)-1, "%d", lineno[1]);
+		snprintf(&linestring[3], sizeof(linestring)-1, "%d", lineno[2]);
+}
+
+#endif
+	snprintf(linestring, sizeof(linestring)-1, "%02d%d%d", 
+				lineno[0], lineno[1], lineno[2]);
+
 
     printf("\nString of line number: %s\n", linestring);
 

@@ -3,6 +3,6 @@ a mini program to model the way a sender would be implemented in C. also tests v
 This only cares about the station number since the office code is not transmitted using revertive pulse signaling--just the 
 last 4 of the phone number.
 
-compile, then run with:
-./sender <4 digit station number>
+compile, then run with:<br>
+./sender <4 digit station number><br>
 eg. ./sender 5678
